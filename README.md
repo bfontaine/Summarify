@@ -21,6 +21,9 @@ https://github.com/ (en)
 https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png
 ```
 
+Work in progress: the main features are implemented but the code is still
+missing unit tests.
+
 ## Install
 
     pip3 install summarify
