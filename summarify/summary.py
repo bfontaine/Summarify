@@ -12,8 +12,8 @@ class Summary:
         return cls(markup=r.text, _url=url)
 
     @classmethod
-    def from_html(cls, html):
-        return cls(markup=html)
+    def from_html(cls, html, url=None):
+        return cls(markup=html, _url=url)
 
     def __init__(self, markup, _url=None):
         p = PageParser(markup, url=_url)

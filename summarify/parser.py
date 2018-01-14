@@ -31,12 +31,17 @@ class PageParser:
             if name in self.metas:
                 return self.metas[name]
 
+    def _find_text(self, *args, **kwargs):
+        el = self.soup.find(*args, **kwargs)
+        if el:
+            return el.get_text().strip()
+
     def parse_title(self):
         if self.head:
             # 1. <head><title>...</title></head>
-            title = self.head.find("title")
+            title = self._find_text("title")
             if title:
-                return title.get_text()
+                return title
 
             # 2. meta og:title or twitter:title
             m = self._first_meta("og:title","twitter:title",)
@@ -58,15 +63,15 @@ class PageParser:
 
         # 5. itemprop=title or headline
         for itemprop in ("title", "headline"):
-            el = self.soup.find(itemprop=itemprop)
-            if el:
-                return el.get_text()
+            title = self._find_text(itemprop=itemprop)
+            if title:
+                return title
 
         # 6. <h2>...</h2>, <h3>...</h3>, ..., <h6>...</h6>
         for h_tag in ("h2", "h3", "h4", "h5", "h6"):
-            h = self.soup.find(h_tag)
-            if h:
-                return h.get_text()
+            title = self._find_text(h_tag)
+            if title:
+                return title
 
     def parse_url(self):
         if self._url:
@@ -90,7 +95,7 @@ class PageParser:
             return m
 
         # 2. itemprop=description
-        description = self.soup.find(itemprop="description")
+        description = self._find_text(itemprop="description")
         if description:
             return description
 
@@ -113,23 +118,27 @@ class PageParser:
         if m:
             return m
 
-        publisher = self.soup.find(itemprop="publisher")
+        publisher = self._find_text(itemprop="publisher")
         if publisher:
-            return publisher.get_text()
+            return publisher
 
     def parse_author(self):
         m = self._first_meta("author")
         if m:
             return m
 
-        author = self.soup.find(itemprop="author")
+        author = self._find_text(itemprop="author")
         if author:
-            return author.get_text()
+            return author
 
     # TODO use self._url or parse_url to get a full URL here
     def parse_picture(self):
         if not self.head:
             return
+
+        m = self._first_meta("og:image", "twitter:image")
+        if m:
+            return m
 
         for link in self.head.find_all("link"):
             rel = link.attrs.get("rel", "")
@@ -140,13 +149,10 @@ class PageParser:
             rel = set(rel)
 
             # We might want to exploit attributes like sizes="72x72"
+            # TODO only use "icon" if that's the only one available
             if rel & {"apple-touch-icon-precomposed", "apple-touch-icon",
-                        "icon"}:
+                        "icon", "fluid-icon"}:
                 return href
-
-        m = self._first_meta("og:image", "twitter:image")
-        if m:
-            return m
 
         # Also:
         # <figure class="illustration_haut   " style="width: 534px">

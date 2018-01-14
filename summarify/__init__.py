@@ -7,5 +7,5 @@ from summarify.summary import Summary
 def from_url(url):
     return Summary.from_url(url)
 
-def from_html(markup):
-    return Summary.from_html(markup)
+def from_html(markup, url=None):
+    return Summary.from_html(markup, url=None)
