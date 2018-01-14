@@ -8,16 +8,14 @@ import summarify
 
 summary = summarify.from_url("https://github.com/")
 
-print("#", summary.title)
+print(summary.title)
 print(summary.description)
-print("%s (%s)" % (summary.url, summary.language))
 prin(summary.picture)
 ```
 Output:
 ```text
-# The world's leading software development platform · GitHub
+The world's leading software development platform · GitHub
 GitHub is where people build software. More than 27 million people use GitHub to discover, fork, and contribute to over 75 million projects.
-https://github.com/ (en)
 https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png
 ```
 
@@ -50,3 +48,11 @@ attributes:
 * `author` (`str` or `None`)
 * `publisher` (`str` or `None`)
 * `excerpt`: Always `None` for now
+
+You can also export a summary as a `dict` for e.g. JSON serialization:
+
+```python
+dict(my_summary)  # -> {"url": "...", "title": "..."}
+```
+
+Be aware that only the non-`None` attributes are included in that dictionnary.
