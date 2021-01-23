@@ -28,7 +28,7 @@ Summarify takes a URL and parses its HTML to give you a title and description,
 but also a picture URL, and a couple other attributes to summarize the page.
 """,
     install_requires=[
-        'beautifulsoup4>=4.6.0,<4.7',
+        'beautifulsoup4>=4.6.0',
         'requests>=2.18.4',
     ],
     classifiers=[

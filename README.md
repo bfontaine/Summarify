@@ -1,7 +1,6 @@
 # Summarify
 
-**Summarify** is a small Python library to extract a title and description from
-a Web page.
+**Summarify** is a small Python library to extract a title and description from a Web page.
 
 ```python
 import summarify
@@ -19,9 +18,6 @@ GitHub is where people build software. More than 27 million people use GitHub to
 https://assets-cdn.github.com/images/modules/open_graph/github-octocat.png
 ```
 
-**Work in progress:** the main features are implemented but the code is still
-missing unit tests.
-
 ## Install
 
     pip3 install summarify
@@ -31,7 +27,7 @@ missing unit tests.
 ```python
 import summarify
 
-summary = summarify.from_url(YOUR_URL_HERE)
+summary = summarify.from_url("https://...")
 
 # If you already have the HTML:
 # summary = summarify.from_html("...")
@@ -56,8 +52,3 @@ dict(my_summary)  # -> {"url": "...", "title": "..."}
 ```
 
 Be aware that only the non-`None` attributes are included in that dictionnary.
-
-## Support
-
-Only Python 3.x is officially supported. It might not be hard to support Python
-2.x as well but I haven’t tried yet.

@@ -6,13 +6,13 @@ from summarify.parser import PageParser
 
 class Summary:
     @classmethod
-    def from_url(cls, url):
+    def from_url(cls, url: str):
         r = requests.get(url)
         r.raise_for_status()
         return cls(markup=r.text, _url=url)
 
     @classmethod
-    def from_html(cls, html, url=None):
+    def from_html(cls, html: str, url=None):
         return cls(markup=html, _url=url)
 
     def __init__(self, markup, _url=None):
@@ -29,7 +29,7 @@ class Summary:
 
     def __iter__(self):
         for attr in ("url", "title", "description", "language", "author",
-                "publisher", "picture", "excerpt"):
+                     "publisher", "picture", "excerpt"):
             value = getattr(self, attr)
             if value:
-                yield (attr, value)
+                yield attr, value
