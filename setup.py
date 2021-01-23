@@ -27,16 +27,19 @@ setup(
 Summarify takes a URL and parses its HTML to give you a title and description,
 but also a picture URL, and a couple other attributes to summarize the page.
 """,
+    long_description_content_type='text/markdown',
     install_requires=[
         'beautifulsoup4>=4.6.0',
         'requests>=2.18.4',
     ],
     classifiers=[
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
+        'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
     ],
