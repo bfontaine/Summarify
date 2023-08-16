@@ -1,2 +1,2 @@
 #! /bin/bash
-poetry run mypy --ignore-missing-imports summarify
+poetry run mypy --check-untyped-defs summarify
