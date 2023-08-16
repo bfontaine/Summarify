@@ -112,6 +112,9 @@ class PageParser:
 
         # 2. html lang or xml:lang attributes
         html = self.soup.find("html")
+        if not html:
+            return None
+
         for attr in ("lang", "xml:lang"):
             if attr in html.attrs:
                 return html.attrs[attr]

@@ -2,6 +2,7 @@
 
 ## 0.1.0 (unreleased)
 
+* Fix language parsing on empty inputs
 * Add `py.typed`
 * Use Poetry to manage the project
 
