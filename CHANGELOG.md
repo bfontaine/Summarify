@@ -1,6 +1,6 @@
 # Summarify
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2023/08/16)
 
 * Fix language parsing on empty inputs
 * Add `py.typed`
